@@ -1,33 +1,33 @@
+import { Column, Entity, PrimaryColumn } from "typeorm";
 
+@Entity()
+export class USUARIO {
 
-export class UsuarioEntity {
-    id: string;
-    nome: string;
-    sobrenome: string;
-    email: string;
-    confirmaemail: string;
-    telefoneum: string;
-    telefonedois: string;
-    login: string;
-    #senha: string;
+    @PrimaryColumn()
+    ID: string;
 
-    constructor(id: string, nome: string, sobrenome: string, email: string, confirmaemail: string, telefoneum: string, telefonedois: string, login: string, senha: string) {
-        this.id = id;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.email = email;
-        this.confirmaemail = confirmaemail;
-        this.telefoneum = telefoneum;
-        this.telefonedois = telefonedois;
-        this.login = login;
-        this.#senha = senha;
-    }
+    @Column()
+    NOME: string;
 
-    get senha() {
-        return this.#senha
-    }
+    @Column()
+    SOBRENOME: string;
 
-    // set senha(senhanova) {
-    //     this.#senha = senhanova;
-    // }
+    @Column()
+    EMAIL: string;
+
+    @Column()
+    CONFIRMAEMAIL: string;
+
+    @Column()
+    TELEFONEUM: string;
+
+    @Column()
+    TELEFONEDOIS: string;
+
+    @Column()
+    LOGIN: string;
+
+    @Column()
+    SENHA: string;
+
 }

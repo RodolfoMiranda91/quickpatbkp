@@ -1,75 +1,75 @@
 import { Injectable } from "@nestjs/common/decorators";
-import { FuncionarioEntity } from "./funcionario.entity";
+import { FUNCIONARIO } from "./funcionario.entity";
 
 
 @Injectable()
 export class FuncionariosArmazenados {
-    #Funcionarios: FuncionarioEntity[] = [];
+    #funcionarios: FUNCIONARIO[] = [];
 
-    AdicionarFuncionario(funcionario: FuncionarioEntity){
-        this.#Funcionarios.push(funcionario);
+    AdicionarPatrimonio(funcionario: FUNCIONARIO){
+        this.#funcionarios.push(funcionario);
     }
 
     get Funcionarios(){
-        return this.#Funcionarios
+        return this.#funcionarios
     }
-
-    async validaEmail(email: string){
-        const possivelfuncionario = this.#Funcionarios.find(
-            funcionario => funcionario.email === email
-        );
-        return (possivelfuncionario!== undefined);
-    }
-
 
     private buscaPorID(id: string){
-        const possivelfuncionario = this.#Funcionarios.find(
-            Funcionariosalvo => Funcionariosalvo.id === id
+        const possivelfuncionario = this.#funcionarios.find(
+            Funcionariosalvo => Funcionariosalvo.ID === id
         );
 
         if (!possivelfuncionario){
-            throw new Error('funcionario não encontrado')
+            throw new Error('Funcionario não encontrado')
         }
         return possivelfuncionario
     }
 
-    async retornoFuncionarioId(id: string){
-        const possivelfuncionario = this.#Funcionarios.find(
-            Funcionariosalvo => Funcionariosalvo.id === id
+    async validaEmail(email:string){
+        const possivelfuncionario = this.#funcionarios.find(
+            funcionario => funcionario.EMAIL === email
         );
-
-        if (!possivelfuncionario){
-            throw new Error('funcionario não encontrado')
-        }
-        return possivelfuncionario
+        return (possivelfuncionario !== undefined);
     }
 
-    
+    async FuncionarioByID(id: string){
+        const funcionario = this.buscaPorID(id);
+        return funcionario;
+    }
 
-    async atualizaFuncionario(id: string, dadosAtualizacao: Partial<FuncionarioEntity>){
+    async PatrimonioByNome(nome: string){
+        const funcionario = this.#funcionarios.filter(
+            Funcionariosalvo => Funcionariosalvo.NOME_COMPLETO.includes(nome)
+        );
+
+        if(!funcionario){
+            throw new Error('Funcionario não encontrado');
+        }
+
+        return funcionario;
+    }
+
+    async atualizaFuncionario(id: string, dadosAtualizacao: Partial<FUNCIONARIO>){
         const funcionario = this.buscaPorID(id);
 
         Object.entries(dadosAtualizacao).forEach(
             ([chave, valor]) => {
-                if (chave === 'id'){
+                if(chave=== 'id'){
                     return;
                 }
 
                 funcionario[chave] = valor;
             }
-            )
-
-        return funcionario;
-    }
-    
-    async removeFuncionario(id: string){
-        const funcionario = this.buscaPorID(id);
-
-        this.#Funcionarios = this.#Funcionarios.filter(
-            Funcionariosalvo => Funcionariosalvo.id !== id
         )
 
         return funcionario;
     }
 
+    async removeFuncionario(id: string){
+        const funcionario = this.buscaPorID(id);
+        this.#funcionarios = this.#funcionarios.filter(
+            Funcionariosalvo => Funcionariosalvo.ID !== id
+        )
+        return funcionario;
+    }    
 }

@@ -1,8 +1,8 @@
-import { IsNotEmpty, IsString, IsEmail, IsOptional } from "class-validator";
+import { IsNotEmpty, IsString, IsEmail,  IsOptional} from "class-validator";
 import { EmailUnico } from "src/funcionario/validacao/email-unico.validator";
 
 
-export class AlteraFuncionarioDTO{
+export class CriaFuncionarioDTO{
     @IsString()
     @IsNotEmpty({message: "Nome não pode ser vazio"})
     @IsOptional()

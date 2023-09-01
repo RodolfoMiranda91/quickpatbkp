@@ -1,13 +1,13 @@
-export class ListaUsuarioDTO{
+export class ListaUsuarioDTO {
     constructor(
-        readonly id: string,
-        readonly nome: string,
-        readonly sobrenome: string,
-        readonly email: string,
-        readonly confirmaemail: string,
-        readonly telefoneum: string,
-        readonly telefonedois: string,
-        readonly login: string,
-        readonly senha: string
-    ){}
+        readonly ID: string,
+        readonly NOME: string,
+        readonly SOBRENOME: string,
+        readonly EMAIL: string,
+        readonly CONFIRMAEMAIL: string,
+        readonly TELEFONEUM: string,
+        readonly TELEFONEDOIS: string,
+        readonly LOGIN: string,
+        readonly SENHA: string
+    ) { }
 }

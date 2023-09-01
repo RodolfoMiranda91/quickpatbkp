@@ -1,79 +1,70 @@
 import { Injectable } from "@nestjs/common/decorators";
-import { UsuarioEntity } from "./usuario.entity";
+import { USUARIO } from "./usuario.entity";
 
 
 @Injectable()
 export class UsuariosArmazenados {
-    #usuarios: UsuarioEntity[] = [];
+    #usuarios: USUARIO[] = [];
 
-    AdicionarUsuario(usuario: UsuarioEntity){
+    AdicionarUsuario(usuario: USUARIO) {
         this.#usuarios.push(usuario);
     }
 
-    get Usuarios(){
+    get Usuarios() {
         return this.#usuarios
     }
 
-    async validaEmail(email: string){
-        const possivelUsuario = this.#usuarios.find(
-            usuario => usuario.email === email
+    private buscaPorID(id: string) {
+        const possivelusuario = this.#usuarios.find(
+            Usuariosalvo => Usuariosalvo.ID === id
         );
-        return (possivelUsuario!== undefined);
+
+        if (!possivelusuario) {
+            throw new Error('Usuario não encontrado')
+        }
+        return possivelusuario
     }
 
-    async validaLogin(login: string){
-        const loginOk = this.#usuarios.find(
-            usuario => usuario.login === login
+    async validaEmail(email: string) {
+        const possivelUsuario = this.#usuarios.find(
+            usuario => usuario.EMAIL === email
         );
-        return (loginOk!== undefined);
+        return (possivelUsuario !== undefined);
     }
 
 
-    private buscaPorID(id: string){
+    async buscaUsuarioPorID(id: string) {
         const possivelUsuario = this.#usuarios.find(
-            usuarioSalvo => usuarioSalvo.id === id
+            usuariosSalvo => usuariosSalvo.ID === id
         );
 
-        if (!possivelUsuario){
+        if (!possivelUsuario) {
             throw new Error('Usuario não encontrado')
         }
         return possivelUsuario
     }
 
-    async retornoUsuarioId(id: string){
-        const possivelUsuario = this.#usuarios.find(
-            usuarioSalvo => usuarioSalvo.id === id
-        );
-
-        if (!possivelUsuario){
-            throw new Error('Usuario não encontrado')
-        }
-        return possivelUsuario
-    }
-
-    
-
-    async atualizaUsuario(id: string, dadosAtualizacao: Partial<UsuarioEntity>){
+    async atualizaUsuario(id: string, dadosAtualizacao: Partial<USUARIO>) {
         const usuario = this.buscaPorID(id);
 
         Object.entries(dadosAtualizacao).forEach(
             ([chave, valor]) => {
-                if (chave === 'id'){
+                if (chave === 'id') {
                     return;
                 }
 
                 usuario[chave] = valor;
             }
-            )
+        )
 
         return usuario;
     }
-    
-    async removeUsuario(id: string){
+
+    async removeUsuario(id: string) {
         const usuario = this.buscaPorID(id);
 
         this.#usuarios = this.#usuarios.filter(
-            usuarioSalvo => usuarioSalvo.id !== id
+            usuarioSalvo => usuarioSalvo.ID !== id
         )
 
         return usuario;

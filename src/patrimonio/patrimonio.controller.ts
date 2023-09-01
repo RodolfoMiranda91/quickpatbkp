@@ -18,7 +18,7 @@ export class PatrimonioController{
     }
 
     @Post('')
-    async criaProduto(@Body() dados: CriaPatrimonioDTO): Promise<RetornoCadastroDTO>{        
+    async criaPatrimonio(@Body() dados: CriaPatrimonioDTO): Promise<RetornoCadastroDTO>{        
         return this.patrimonioService.inserir(dados)        
     }
 

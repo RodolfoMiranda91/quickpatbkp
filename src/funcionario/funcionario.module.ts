@@ -1,12 +1,19 @@
 import { Module } from "@nestjs/common";
-import { FuncionarioController } from "./Funcionario.controller";
-import { FuncionariosArmazenados } from "./funcionario.dm";
+import { DatabaseModule } from "src/database/database.module";
+import { FuncionarioController } from "./funcionario.controller";
+import { funcionarioProviders } from "./funcionario.providers";
+import { FuncionarioService } from "./funcionario.service";
 import { EmailUnicoValidator } from "./validacao/email-unico.validator";
 
 
+
 @Module({
-    controllers:[FuncionarioController],
-    providers:[FuncionariosArmazenados, EmailUnicoValidator]
-})
-export class FuncionarioModule{
-}
+    imports: [DatabaseModule],
+    controllers: [FuncionarioController],
+    providers: [
+      ...funcionarioProviders,
+      FuncionarioService,
+      EmailUnicoValidator,
+    ],
+  })
+  export class FuncionarioModule {}

@@ -1,11 +1,11 @@
 export class ListaFuncionarioDTO{
     constructor(
-        readonly id: string,
-        readonly nomecompleto: string,
-        readonly cargo: string,
-        readonly email: string,
-        readonly confirmaemail: string,
-        readonly telefoneum: string,
-        readonly departamento: string
+        readonly ID: string,
+        readonly NOME_COMPLETO: string,
+        readonly CARGO: string,
+        readonly EMAIL: string,
+        readonly CONFIRMAEMAIL: string,
+        readonly TELEFONEUM: string,
+        readonly DEPARTAMENTO: string
     ){}
 }
