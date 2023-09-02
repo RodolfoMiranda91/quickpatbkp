@@ -3,7 +3,7 @@ import { DatabaseModule } from "src/database/database.module";
 import { FuncionarioController } from "./funcionario.controller";
 import { funcionarioProviders } from "./funcionario.providers";
 import { FuncionarioService } from "./funcionario.service";
-import { EmailUnicoValidator } from "./validacao/email-unico.validator";
+import { EmailUnicoFuncionarioValidator } from "./validacao/emailUnicoFuncionario";
 
 
 
@@ -13,7 +13,7 @@ import { EmailUnicoValidator } from "./validacao/email-unico.validator";
     providers: [
       ...funcionarioProviders,
       FuncionarioService,
-      EmailUnicoValidator,
+      EmailUnicoFuncionarioValidator,
     ],
   })
   export class FuncionarioModule {}

@@ -25,14 +25,6 @@ export class UsuariosArmazenados {
         return possivelusuario
     }
 
-    async validaEmail(email: string) {
-        const possivelUsuario = this.#usuarios.find(
-            usuario => usuario.EMAIL === email
-        );
-        return (possivelUsuario !== undefined);
-    }
-
-
     async buscaUsuarioPorID(id: string) {
         const possivelUsuario = this.#usuarios.find(
             usuariosSalvo => usuariosSalvo.ID === id

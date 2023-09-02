@@ -10,7 +10,7 @@ import { AlteraUsuarioDTO } from './dto/atualizaUsuario.dto';
 Injectable()
 export class UsuarioService {
   #usuarios: USUARIO[] = [];
-  async validaEmail(email:string){
+  async validaEmailUsuario (email:string){
     const possivelusuario = this.#usuarios.find(
       usuario => usuario.EMAIL === email
     );

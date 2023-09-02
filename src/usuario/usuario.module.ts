@@ -3,7 +3,7 @@ import { DatabaseModule } from "src/database/database.module";
 import { UsuarioController } from "./usuario.controller";
 import { usuarioProviders } from "./usuario.providers";
 import { UsuarioService } from "./usuario.service";
-import { EmailUnicoValidator } from "./validacao/email-unico.validator";
+import { EmailUnicoUsuarioValidator } from "./validacao/emailUnicoUsuario";
 
 
 @Module({
@@ -12,9 +12,7 @@ import { EmailUnicoValidator } from "./validacao/email-unico.validator";
     providers: [
         ...usuarioProviders,
         UsuarioService,
-        EmailUnicoValidator
+        EmailUnicoUsuarioValidator,
     ]
 })
-export class UsuarioModule {
-
-}
+export class UsuarioModule {}

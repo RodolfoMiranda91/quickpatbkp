@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, IsEmail,  IsOptional} from "class-validator";
-import { EmailUnico } from "src/funcionario/validacao/email-unico.validator";
+import { EmailUnicoFuncionario } from "../validacao/emailUnicoFuncionario";
 
 
 export class CriaFuncionarioDTO{
@@ -14,12 +14,12 @@ export class CriaFuncionarioDTO{
     CARGO: string;
 
     @IsEmail(undefined,{message: "Email invalido"})
-    @EmailUnico({message: "Já existe funcionário com este email cadastrado"})
+    @EmailUnicoFuncionario({message: "Já existe funcionário com este email cadastrado"})
     @IsOptional()
     EMAIL: string;
 
     @IsEmail(undefined,{message: "Email invalido"})
-    @EmailUnico({message: "Já existe funcionário com este email cadastrado"})
+    @EmailUnicoFuncionario({message: "Já existe funcionário com este email cadastrado"})
     @IsOptional()
     CONFIRMAEMAIL: string;
     

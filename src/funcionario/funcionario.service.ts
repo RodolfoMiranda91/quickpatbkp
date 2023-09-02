@@ -9,7 +9,7 @@ import { FUNCIONARIO } from "./funcionario.entity";
 Injectable()
 export class FuncionarioService {
   #funcionarios: FUNCIONARIO[] = [];
-  async validaEmail(email:string){
+  async validaEmailFuncionario(email:string){
     const possivelfuncionario = this.#funcionarios.find(
         funcionario => funcionario.EMAIL === email
     );

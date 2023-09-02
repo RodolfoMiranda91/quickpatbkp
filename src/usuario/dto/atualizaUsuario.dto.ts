@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, IsOptional, IsEmail } from "class-validator";
-import { EmailUnico } from "../validacao/email-unico.validator";
+import { EmailUnicoUsuario } from "../validacao/emailUnicoUsuario";
 
 
 export class AlteraUsuarioDTO {
@@ -12,20 +12,20 @@ export class AlteraUsuarioDTO {
     SOBRENOME: string;
 
     @IsEmail(undefined,{message: "Email invalido"})
-    @EmailUnico({message: "Já existe usuário com este email cadastrado"})
+    @EmailUnicoUsuario({message: "Já existe usuário com este email cadastrado"})
     @IsOptional()
     EMAIL: string;
 
     @IsEmail(undefined,{message: "Email invalido"})
-    @EmailUnico({message: "Já existe usuário com este email cadastrado"})
+    @EmailUnicoUsuario({message: "Já existe usuário com este email cadastrado"})
     @IsOptional()
     CONFIRMAEMAIL: string;
 
-    @IsString()
+    @IsString({message: "Telefone inválido"})
     @IsOptional()
     TELEFONEUM: string;
 
-    @IsString()
+    @IsString({message: "Telefone inválido"})
     @IsOptional()
     TELEFONEDOIS: string;
 

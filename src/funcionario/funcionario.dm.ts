@@ -23,14 +23,7 @@ export class FuncionariosArmazenados {
             throw new Error('Funcionario não encontrado')
         }
         return possivelfuncionario
-    }
-
-    async validaEmail(email:string){
-        const possivelfuncionario = this.#funcionarios.find(
-            funcionario => funcionario.EMAIL === email
-        );
-        return (possivelfuncionario !== undefined);
-    }
+    }   
 
     async FuncionarioByID(id: string){
         const funcionario = this.buscaPorID(id);

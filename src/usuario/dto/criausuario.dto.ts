@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { EmailUnico } from "../validacao/email-unico.validator";
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { EmailUnicoUsuario } from "../validacao/emailUnicoUsuario";
 
 
 export class CriaUsuarioDTO {
@@ -11,13 +11,13 @@ export class CriaUsuarioDTO {
     @IsNotEmpty({ message: "Nome não pode ser vazio" })
     SOBRENOME: string;
 
-    @IsString()
-    @EmailUnico({message: "Já existe usuário com este email cadastrado"})
+    @IsEmail(undefined,{message: "Email invalido"})
+    @EmailUnicoUsuario({message: "Já existe usuário com este email cadastrado"})
     @IsOptional()
     EMAIL: string;
 
-    @IsString()
-    @EmailUnico({message: "Já existe usuário com este email cadastrado"})
+    @IsEmail(undefined,{message: "Email invalido"})
+    @EmailUnicoUsuario({message: "Já existe usuário com este email cadastrado"})
     @IsOptional()
     CONFIRMAEMAIL: string;
 
